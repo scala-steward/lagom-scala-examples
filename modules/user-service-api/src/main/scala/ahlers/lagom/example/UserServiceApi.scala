@@ -8,7 +8,7 @@ import com.lightbend.lagom.scaladsl.api.Service
  */
 trait UserServiceApi extends Service:
   override val descriptor = {
-   import Service.*
+    import Service.*
     named("user-service")
       .withAutoAcl(true)
   }
