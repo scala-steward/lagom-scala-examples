@@ -1,6 +1,6 @@
 lazy val `lagom-example` =
   project.in(file("."))
-    .aggregate(`service-api`)
+    .aggregate(`user-service-api`)
 
 lazy val `user-service-api` =
   project.in(file(".") / "modules" / "user-service-api")
