@@ -55,7 +55,7 @@ jobs:
         run: sbt ++${{ matrix.scala }} test
 
       - name: Compress target directories
-        run: tar cf targets.tar target project/target
+        run: tar cf targets.tar modules/user-service-api/target target target/lagom-dynamic-projects/lagom-internal-meta-project-kafka/target target/lagom-dynamic-projects/lagom-internal-meta-project-service-locator/target target/lagom-dynamic-projects/lagom-internal-meta-project-cassandra/target project/target
 
       - name: Upload target directories
         uses: actions/upload-artifact@v2
