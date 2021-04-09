@@ -2,7 +2,7 @@ import com.typesafe.sbt.SbtGit.GitKeys.{ gitBranch, gitHeadCommit, gitHeadCommit
 
 enablePlugins(BuildInfoPlugin)
 
-buildInfoObject := "ExampleServiceApiBuildInfo"
+buildInfoObject := "UserServiceApiBuildInfo"
 buildInfoPackage := "ahlers.lagom.example"
 
 buildInfoKeys ++=

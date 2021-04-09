@@ -8,5 +8,9 @@ libraryDependencies ++=
     Nil
 
 libraryDependencies ++=
+  "com.devskiller.friendly-id" % "friendly-id" % "1.1.0" ::
+    Nil
+
+libraryDependencies ++=
   ("com.typesafe.akka" %% "akka-slf4j" % LagomVersion.akka).cross(CrossVersion.for3Use2_13) ::
     Nil

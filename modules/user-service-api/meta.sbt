@@ -1,2 +1,2 @@
-name := "example-service-api"
-description := "Internally-facing Example services."
+name := "user-service-api"
+description := "Internally-facing User Service."
