@@ -1,7 +1,11 @@
 import com.lightbend.lagom.core.LagomVersion
 import sbt.librarymanagement.syntax.ExclusionRule
 
-val excludeScalaXml = ExclusionRule().withOrganization("org.scala-lang.modules").withName("scala-xml").withCrossVersion(CrossVersion.for3Use2_13)
+val excludeScalaXml =
+  ExclusionRule()
+    .withOrganization("org.scala-lang.modules")
+    .withName("scala-xml")
+    .withCrossVersion(CrossVersion.for3Use2_13)
 
 libraryDependencies ++=
   ("com.lightbend.lagom" %% "lagom-scaladsl-api" % LagomVersion.current ::
