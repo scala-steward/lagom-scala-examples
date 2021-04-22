@@ -12,6 +12,9 @@ libraryDependencies ++=
     Nil).map(_
     .cross(CrossVersion.for3Use2_13))
 
+libraryDependencies +=
+  "org.scala-lang.modules" %% "scala-xml" % "2.0.0-RC1"
+
 libraryDependencies ++=
   "com.devskiller.friendly-id" % "friendly-id" % "1.1.0" ::
     Nil

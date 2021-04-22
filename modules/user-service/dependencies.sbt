@@ -43,6 +43,11 @@ libraryDependencies ++=
 libraryDependencies +=
   "org.jooq" % "joor" % "0.9.13" % Test
 
+/** Fixes an incompatibility. */
+dependencyOverrides ++=
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.11.4" ::
+    Nil
+
 excludeDependencies ++=
   ("lagom-logback" ::
     "lagom-reloadable-server" ::
