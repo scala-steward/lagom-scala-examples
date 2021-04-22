@@ -8,7 +8,7 @@ import com.lightbend.lagom.scaladsl.server.{LagomApplicationContext, LagomApplic
  */
 class UserServiceApplicationLoader extends LagomApplicationLoader:
 
-  logger.info(s"Starting User Service…")
+  logger.info(s"Starting User Service application…")
 
   override def load(context: LagomApplicationContext) =
     new UserServiceLiveApplication(context)

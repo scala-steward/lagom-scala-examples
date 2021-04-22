@@ -28,6 +28,8 @@ abstract class UserServiceApplication(
     with LagomServerComponents
     with SlickPersistenceComponents:
 
+  logger.info(s"Started User Service application.")
+
   override lazy val jsonSerializerRegistry =
     EmptyJsonSerializerRegistry
 
