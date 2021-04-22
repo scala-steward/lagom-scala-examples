@@ -12,6 +12,8 @@ import com.lightbend.lagom.scaladsl.server.LagomServiceBinder
 import com.lightbend.lagom.scaladsl.server.LagomServiceBinding
 import com.lightbend.lagom.scaladsl.persistence.jdbc.JdbcPersistenceComponents
 import com.lightbend.lagom.scaladsl.persistence.slick.SlickPersistenceComponents
+import org.slf4j.LoggerFactory
+import play.api.Logger
 import play.api.db.HikariCPComponents
 
 /**
@@ -27,6 +29,8 @@ abstract class UserServiceApplication(
     with HikariCPComponents
     with LagomServerComponents
     with SlickPersistenceComponents:
+
+  private val logger = Logger(classOf[UserServiceApplication])
 
   logger.info(s"Started User Service application.")
 
