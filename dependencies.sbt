@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "3.0.0-RC2"
+ThisBuild / scalaVersion := "3.0.0-RC3"
 
 ThisBuild / libraryDependencies ++=
   ("org.scalacheck" %% "scalacheck" % "1.15.3" % Test) ::
