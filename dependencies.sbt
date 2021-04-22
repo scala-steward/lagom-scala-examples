@@ -1,4 +1,6 @@
-ThisBuild / scalaVersion := "3.0.0-RC3"
+// TODO: Restore once all libraries are cross-compiled against RC3.
+// ThisBuild / scalaVersion := "3.0.0-RC3"
+ThisBuild / scalaVersion := "3.0.0-RC2"
 
 ThisBuild / libraryDependencies ++=
   ("org.scalacheck" %% "scalacheck" % "1.15.3" % Test) ::
