@@ -27,10 +27,15 @@ libraryDependencies ++=
       .cross(CrossVersion.for3Use2_13))
 
 libraryDependencies ++=
-  //"org.flywaydb" % "flyway-core" % "7.5.3" ::
-  //"com.github.tminglei" %% "slick-pg" % "0.19.5" ::
-  //"com.github.tminglei" %% "slick-pg_play-json" % "0.19.5" ::
-  Nil
+  "org.postgresql" % "postgresql" % "42.2.19" ::
+    "org.flywaydb" % "flyway-core" % "7.5.3" ::
+    Nil
+
+libraryDependencies ++=
+  ("com.github.tminglei" %% "slick-pg" % "0.19.5" ::
+    Nil)
+    .map(_
+      .cross(CrossVersion.for3Use2_13))
 
 libraryDependencies ++=
   ("com.typesafe.akka" %% "akka-actor-testkit-typed" % LagomVersion.akka % Test ::
