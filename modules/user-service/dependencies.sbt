@@ -2,15 +2,15 @@ import com.lightbend.lagom.core.LagomVersion
 import sbt.librarymanagement.syntax.ExclusionRule
 
 libraryDependencies ++=
-  ( //"com.lightbend.akka" %% "akka-split-brain-resolver" % "1.1.12" ::
-    "com.typesafe.akka" %% "akka-slf4j" % LagomVersion.akka ::
-      Nil)
+  ("com.typesafe.akka" %% "akka-slf4j" % LagomVersion.akka ::
+    Nil)
     .map(_
       .cross(CrossVersion.for3Use2_13))
 
 libraryDependencies ++=
   ("com.lightbend.lagom" %% "lagom-logback" % LagomVersion.current ::
     "com.lightbend.lagom" %% "lagom-reloadable-server" % LagomVersion.current ::
+    "com.lightbend.lagom" %% "lagom-scaladsl-akka-discovery-service-locator" % LagomVersion.current ::
     "com.lightbend.lagom" %% "lagom-scaladsl-dev-mode" % LagomVersion.current ::
     "com.lightbend.lagom" %% "lagom-scaladsl-kafka-broker" % LagomVersion.current ::
     "com.lightbend.lagom" %% "lagom-scaladsl-kafka-client" % LagomVersion.current ::
