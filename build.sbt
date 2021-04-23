@@ -9,6 +9,10 @@ lazy val `user-service-api` =
   project.in(file(".") / "modules" / "user-service-api")
 /*.dependsOn(`user-service-api-models`)*/
 
+/**
+ * @todo Restore this once Scala 2.13.6 releases with support for TASTy format 28.0.3.
+ * @see [[https://contributors.scala-lang.org/t/scala-2-13-6-planning/4975 Scala 2.13.6 planning]]
+ */
 /*lazy val `user-service-api-models` =
   project.in(file(".") / "modules" / "user-service-api-models")*/
 
