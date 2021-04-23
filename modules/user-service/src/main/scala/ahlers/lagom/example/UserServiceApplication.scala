@@ -39,7 +39,7 @@ abstract class UserServiceApplication(
 
   override lazy val lagomServer =
     val service = UserServiceDefault(actorSystem)
-    val binder = LagomServiceBinder[UserServiceApi](lagomServerBuilder, UserServiceApi.descriptor)
+    val binder = LagomServiceBinder[UserService](lagomServerBuilder, UserService.descriptor)
     LagomServer.forService(binder.to(service))
 
 class UserServiceTestApplication(

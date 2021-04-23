@@ -1,26 +1,15 @@
 import com.lightbend.lagom.core.LagomVersion
-import sbt.librarymanagement.syntax.ExclusionRule
 
-libraryDependencies ++=
-  ("com.typesafe.akka" %% "akka-slf4j" % LagomVersion.akka ::
-    Nil)
-    .map(_
-      .cross(CrossVersion.for3Use2_13))
+resolvers += "scala-integration".at("https://scala-ci.typesafe.com/artifactory/scala-integration/")
 
-libraryDependencies ++=
-  ("com.lightbend.lagom" %% "lagom-scaladsl-api" % LagomVersion.current ::
-    Nil).map(_
-    .cross(CrossVersion.for3Use2_13))
+/** This module remains compiled against Scala 2.13 since Lagom makes extensive use of macros for declaring service descriptors. */
+scalaVersion := "2.13.5"
 
-libraryDependencies +=
-  "org.scala-lang.modules" %% "scala-xml" % "2.0.0-RC1"
+libraryDependencies += "com.typesafe.akka" %% "akka-slf4j" % LagomVersion.akka
+
+libraryDependencies += "com.lightbend.lagom" %% "lagom-scaladsl-api" % LagomVersion.current
 
 libraryDependencies ++=
   "com.devskiller.friendly-id" % "friendly-id" % "1.1.0" ::
+    "io.estatico" %% "newtype" % "0.4.4" ::
     Nil
-
-excludeDependencies +=
-  ExclusionRule()
-    .withOrganization("org.scala-lang.modules")
-    .withName("scala-xml")
-    .withCrossVersion(CrossVersion.for3Use2_13)

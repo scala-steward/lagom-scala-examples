@@ -1,9 +1,5 @@
-// TODO: Restore once all libraries are cross-compiled against RC3.
-// ThisBuild / scalaVersion := "3.0.0-RC3"
-ThisBuild / scalaVersion := "3.0.0-RC2"
-
 ThisBuild / libraryDependencies ++=
-  ("org.scalacheck" %% "scalacheck" % "1.15.3" % Test) ::
-    ("org.scalatest" %% "scalatest" % "3.2.7" % Test) ::
-    ("org.scalatestplus" %% "scalacheck-1-15" % "3.2.7.0" % Test) ::
+  "org.scalacheck" %% "scalacheck" % "1.15.3" % Test ::
+    "org.scalatest" %% "scalatest" % "3.2.7" % Test ::
+    "org.scalatestplus" %% "scalacheck-1-15" % "3.2.7.0" % Test ::
     Nil

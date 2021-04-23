@@ -14,7 +14,8 @@ lazy val `user-service-api` =
 
 lazy val `user-service` =
   project.in(file(".") / "modules" / "user-service")
-    .dependsOn(`user-service-api`)
+    .dependsOn(
+      `user-service-api`)
 
 ThisBuild / Test / testOptions += Tests.Argument("-oD")
 ThisBuild / IntegrationTest / testOptions += Tests.Argument("-oD")

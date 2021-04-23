@@ -1,6 +1,9 @@
 package ahlers.lagom.example
 
 import akka.actor.ActorSystem
+import com.lightbend.lagom.scaladsl.api.ServiceCall
+
+import scala.concurrent.Future
 
 /**
  * @author <a href="mailto:michael@ahlers.consulting">Michael Ahlers</a>
@@ -8,4 +11,9 @@ import akka.actor.ActorSystem
  */
 class UserServiceDefault(
   actorSystem: ActorSystem)
-  extends UserServiceApi
+  extends UserService:
+
+  override def getUserView(userId: UserId) =
+    ServiceCall { request =>
+      Future.successful(UserView(userId, "Michael"))
+    }

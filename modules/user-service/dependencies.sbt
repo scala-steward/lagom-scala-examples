@@ -1,6 +1,14 @@
 import com.lightbend.lagom.core.LagomVersion
 import sbt.librarymanagement.syntax.ExclusionRule
 
+// TODO: Restore once more libraries are compiled for RC3.
+// scalaVersion := "3.0.0-RC3"
+scalaVersion := "3.0.0-RC2"
+
+libraryDependencies ++=
+  "org.scala-lang.modules" %% "scala-xml" % "2.0.0-RC1" ::
+    Nil
+
 libraryDependencies ++=
   ("com.typesafe.akka" %% "akka-slf4j" % LagomVersion.akka ::
     Nil)
