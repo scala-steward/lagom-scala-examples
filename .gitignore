@@ -1,4 +1,6 @@
 /.bsp
 /.idea
 /.java-version
+/.jvmopts
+/.sbtopts
 /target
