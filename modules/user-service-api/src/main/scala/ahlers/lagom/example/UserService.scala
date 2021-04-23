@@ -46,7 +46,7 @@ object UserService {
     Json.format
 
   implicit val pathParamSerializerUserId: PathParamSerializer[UserId] =
-    PathParamSerializer.required[UserId]("foo")((UserId.apply _).compose(FriendlyId.toUuid _))((FriendlyId.toFriendlyId _).compose(_.toUuid))
+    PathParamSerializer.required[UserId]("UserId")((UserId.apply _).compose(FriendlyId.toUuid))((FriendlyId.toFriendlyId _).compose(_.toUuid))
 
   /** Scala 2 macros cannot be used in Scala 3 modules, so this effectively does the work of [[com.lightbend.lagom.scaladsl.server.LagomApplicationLoader#readDescriptor]], albeit manually. */
   val descriptor: Descriptor =
