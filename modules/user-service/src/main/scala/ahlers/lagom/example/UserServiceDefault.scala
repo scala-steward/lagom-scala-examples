@@ -15,5 +15,5 @@ class UserServiceDefault(
 
   override def getUserView(userId: UserId) =
     ServiceCall { request =>
-      Future.successful(UserView(userId, "Michael"))
+      Future.successful(UserView(userId, s"User $userId"))
     }
