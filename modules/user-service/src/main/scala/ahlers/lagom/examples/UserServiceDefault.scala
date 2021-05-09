@@ -4,6 +4,7 @@ import akka.NotUsed
 import akka.actor.ActorSystem
 import akka.util.Timeout
 import com.lightbend.lagom.scaladsl.api.ServiceCall
+import com.lightbend.lagom.scaladsl.api.transport.NotFound
 
 import scala.concurrent.duration._
 import scala.concurrent.Future
@@ -20,6 +21,7 @@ class UserServiceDefault(
   override def getUserImportView(userImportId: UserImportId) = {
     import actorSystem.dispatcher
     import UserImportEntity.Command._
+    import UserImportEntity.State._
 
     given Timeout = Timeout(5.seconds)
 
@@ -27,8 +29,9 @@ class UserServiceDefault(
       userImportRegistry
         .entityRef(userImportId)
         .ask(GetUserImport(_))
-        .map { state =>
-          NotUsed
+        .map {
+          case ImportNotRunning =>
+            throw NotFound(s"Import $userImportId hasn't been started.")
         }
     }
   }
