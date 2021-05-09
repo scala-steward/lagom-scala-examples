@@ -1,5 +1,6 @@
 package akka.persistence.typed.scaladsl
 
+import akka.NotUsed
 import akka.cluster.sharding.typed.ShardingEnvelope
 import akka.cluster.sharding.typed.scaladsl.{ ClusterSharding, Entity, EntityContext, EntityTypeKey }
 import akka.persistence.typed.PersistenceId
@@ -62,6 +63,10 @@ trait EventSourcedCompanion[Identity: ToEntityId]:
 
   final def entity(using environment: Environment): Entity[Command, ShardingEnvelope[Command]] =
     Entity(typeKey)(apply(_))
+
+  final def entity()(using evidence: NotUsed =:= Environment): Entity[Command, ShardingEnvelope[Command]] =
+    /** @todo Figure out correct usage. */
+    entity(using evidence(NotUsed))
 
   final def references(clusterSharding: ClusterSharding): References =
     EventSourcedReferenceFactoryForClusterSharding(clusterSharding, typeKey)
