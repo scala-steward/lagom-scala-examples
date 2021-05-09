@@ -35,7 +35,7 @@ abstract class UserServiceApplication(
   logger.info(s"Started User Service application.")
 
   override lazy val jsonSerializerRegistry =
-    EmptyJsonSerializerRegistry
+    UserImportSerializerRegistry(actorSystem)
 
   override lazy val lagomServer =
     val service = UserServiceDefault(actorSystem)
