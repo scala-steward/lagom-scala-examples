@@ -1,13 +1,13 @@
 lazy val `lagom-example` =
   project.in(file("."))
     .aggregate(
-      `akka-persistence-support`,
+      `lagom-scaladsl-persistence-support`,
       `user-service`,
       `user-service-api` /*,
       `user-service-api-models`*/ )
 
-lazy val `akka-persistence-support` =
-  project.in(file(".") / "modules" / "akka-persistence-support")
+lazy val `lagom-scaladsl-persistence-support` =
+  project.in(file(".") / "modules" / "lagom-scaladsl-persistence-support")
 
 lazy val `user-service-api` =
   project.in(file(".") / "modules" / "user-service-api")

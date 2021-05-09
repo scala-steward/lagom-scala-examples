@@ -2,8 +2,8 @@ import com.typesafe.sbt.SbtGit.GitKeys.{ gitBranch, gitHeadCommit, gitHeadCommit
 
 enablePlugins(BuildInfoPlugin)
 
-buildInfoObject := "AkkaPersistenceSupport"
-buildInfoPackage := "akka.persistence.typed.scaladsl.support"
+buildInfoObject := "LagomScaladslPersistenceSupport"
+buildInfoPackage := "com.lightbend.lagom.scaladsl.persistence"
 
 buildInfoKeys ++=
   Seq[BuildInfoKey](
