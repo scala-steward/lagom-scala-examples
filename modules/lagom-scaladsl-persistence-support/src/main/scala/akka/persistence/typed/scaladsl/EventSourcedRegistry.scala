@@ -11,6 +11,5 @@ import com.lightbend.lagom.scaladsl.persistence.EventStreamElement
  * @since May 09, 2021
  * @author <a href="mailto:michael@ahlers.consulting">Michael Ahlers</a>
  */
-trait EventSourcedReferenceFactory[Identity, Command]:
-
+trait EventSourcedRegistry[Identity, Command]:
   def entityRef(identity: Identity): EntityRef[Command]

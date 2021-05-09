@@ -21,8 +21,8 @@ trait EventSourcedCompanion[Identity: ToEntityId]:
   type State
 
   type Behavior = EventSourcedBehavior[Command, Event, State]
-  type References = EventSourcedReferenceFactory[Identity, Command]
-  type Topics = EventSourcedTopicProducer[Event]
+  type Registry = EventSourcedRegistry[Identity, Command]
+  type TopicProducer = EventSourcedTopicProducer[Event]
 
   def typeKey: EntityTypeKey[Command]
   def eventTag: AggregateEventShards[Event]
@@ -68,10 +68,10 @@ trait EventSourcedCompanion[Identity: ToEntityId]:
     /** @todo Figure out correct usage. */
     entity(using evidence(NotUsed))
 
-  final def references(clusterSharding: ClusterSharding): References =
-    EventSourcedReferenceFactoryForClusterSharding(clusterSharding, typeKey)
+  final def registry(clusterSharding: ClusterSharding): Registry =
+    EventSourcedRegistryForClusterSharding(clusterSharding, typeKey)
 
-  final def topics(persistentEntityRegistry: PersistentEntityRegistry): Topics =
+  final def topicProducer(persistentEntityRegistry: PersistentEntityRegistry): TopicProducer =
     EventSourcedTopicProducerForEntityRegistry(persistentEntityRegistry, eventTag)
 
 object EventSourcedCompanion:

@@ -10,6 +10,9 @@ import io.estatico.newtype.macros.newtype
 package object examples {
 
   @newtype case class UserId(toUuid: UUID)
-  object UserId {}
+  object UserId
+
+  @newtype case class UserImportId(toLong: Long)
+  object UserImportId
 
 }

@@ -21,6 +21,8 @@ trait UserService extends Service {
 
   import UserService._
 
+  def getUserImportView(userImportId: UserImportId): ServiceCall[NotUsed, NotUsed]
+
   def getUserView(userId: UserId): ServiceCall[NotUsed, UserView]
 
   override val descriptor = {
@@ -29,6 +31,7 @@ trait UserService extends Service {
 
     named("user-service")
       .withCalls(
+        restCall(GET, "/user-imports/:userImportId", getUserImportView _),
         restCall(GET, "/users/:userId", getUserView _))
       .withAutoAcl(true)
   }
@@ -45,12 +48,16 @@ object UserService {
   implicit val formatUserView: Format[UserView] =
     Json.format
 
+  implicit val pathParamSerializerUserImportId: PathParamSerializer[UserImportId] =
+    PathParamSerializer.required[UserImportId]("UserImportId")(fromString => UserImportId(FriendlyId.toUuid(fromString).getLeastSignificantBits()))(fromId => FriendlyId.toFriendlyId(new UUID(0, fromId.toLong)))
+
   implicit val pathParamSerializerUserId: PathParamSerializer[UserId] =
-    PathParamSerializer.required[UserId]("UserId")((UserId.apply _).compose(FriendlyId.toUuid))((FriendlyId.toFriendlyId _).compose(_.toUuid))
+    PathParamSerializer.required[UserId]("UserId")(fromString => UserId(FriendlyId.toUuid(fromString)))(fromId => FriendlyId.toFriendlyId(fromId.toUuid))
 
   /** Scala 2 macros cannot be used in Scala 3 modules, so this effectively does the work of [[com.lightbend.lagom.scaladsl.server.LagomApplicationLoader#readDescriptor]], albeit manually. */
   val descriptor: Descriptor =
     new UserService {
+      override def getUserImportView(userImportId: UserImportId) = ???
       override def getUserView(userId: UserId) = ???
     }.descriptor
 

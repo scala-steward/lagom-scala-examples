@@ -37,8 +37,15 @@ abstract class UserServiceApplication(
   override lazy val jsonSerializerRegistry =
     UserImportSerializerRegistry(actorSystem)
 
+  clusterSharding.init(UserImportEntity.entity())
+  lazy val userImportRegistry = UserImportEntity.registry(clusterSharding)
+
   override lazy val lagomServer =
-    val service = UserServiceDefault(actorSystem)
+    val service =
+      UserServiceDefault(
+        userImportRegistry,
+        actorSystem)
+
     val binder = LagomServiceBinder[UserService](lagomServerBuilder, UserService.descriptor)
     LagomServer.forService(binder.to(service))
 
