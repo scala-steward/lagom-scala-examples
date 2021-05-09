@@ -1,4 +1,4 @@
-package ahlers.lagom.example
+package ahlers.lagom.examples
 
 import akka.actor.ActorSystem
 import com.lightbend.lagom.scaladsl.api.ServiceCall

@@ -1,4 +1,4 @@
-package ahlers.lagom.example
+package ahlers.lagom.examples
 
 import com.lightbend.lagom.scaladsl.server.{LagomApplicationContext, LagomApplicationLoader}
 import play.api.Logger

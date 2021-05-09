@@ -1,4 +1,4 @@
-package ahlers.lagom.example
+package ahlers.lagom.examples
 
 import akka.NotUsed
 import com.devskiller.friendly_id.FriendlyId

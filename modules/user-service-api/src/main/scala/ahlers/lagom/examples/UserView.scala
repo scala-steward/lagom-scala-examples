@@ -1,4 +1,4 @@
-package ahlers.lagom.example
+package ahlers.lagom.examples
 
 /**
  * @author <a href="mailto:michael.ahlers@vectorsolutions.com">Michael Ahlers</a>

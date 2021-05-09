@@ -7,7 +7,7 @@ import io.estatico.newtype.macros.newtype
  * @author <a href="mailto:michael.ahlers@vectorsolutions.com">Michael Ahlers</a>
  * @since April 23, 2021
  */
-package object example {
+package object examples {
 
   @newtype case class UserId(toUuid: UUID)
   object UserId {}

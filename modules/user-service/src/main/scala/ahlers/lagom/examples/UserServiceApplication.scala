@@ -1,4 +1,4 @@
-package ahlers.lagom.example
+package ahlers.lagom.examples
 
 import com.lightbend.lagom.scaladsl.broker.kafka.LagomKafkaComponents
 import com.lightbend.lagom.scaladsl.devmode.LagomDevModeComponents
