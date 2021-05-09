@@ -11,6 +11,7 @@ libraryDependencies ++=
 
 libraryDependencies ++=
   ("com.lightbend.lagom" %% "lagom-scaladsl-api" % LagomVersion.current ::
+    "com.lightbend.lagom" %% "lagom-scaladsl-broker" % LagomVersion.current ::
     "com.lightbend.lagom" %% "lagom-scaladsl-persistence" % LagomVersion.current ::
     Nil)
     .map(_

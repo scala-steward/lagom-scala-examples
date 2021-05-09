@@ -20,7 +20,8 @@ trait EventSourcedCompanion[Identity: ToEntityId]:
   type State
 
   type Behavior = EventSourcedBehavior[Command, Event, State]
-  type Registry = EventSourcedRegistry[Identity, Command, Event]
+  type References = EventSourcedReferenceFactory[Identity, Command]
+  type Topics = EventSourcedTopicProducer[Event]
 
   def typeKey: EntityTypeKey[Command]
   def eventTag: AggregateEventShards[Event]
@@ -31,12 +32,7 @@ trait EventSourcedCompanion[Identity: ToEntityId]:
 
   def applyEvent: State => Event => State
 
-  final def apply(
-      persistenceId: PersistenceId,
-      state: State
-    )(using
-      environment: Environment
-    ): Behavior =
+  final def apply(persistenceId: PersistenceId, state: State)(using environment: Environment): Behavior =
     EventSourcedBehavior
       .withEnforcedReplies(
         persistenceId,
@@ -44,50 +40,34 @@ trait EventSourcedCompanion[Identity: ToEntityId]:
         applyCommand(environment)(_)(_),
         applyEvent(_)(_))
 
-  final def apply(
-      persistenceId: PersistenceId
-    )(using
-      environment: Environment
-    ): Behavior =
+  final def apply(persistenceId: PersistenceId)(using environment: Environment): Behavior =
     apply(persistenceId, initialState)
 
-  final def apply(
-      entityContext: EntityContext[Command],
-      state: State
-    )(using
-      environment: Environment
-    ): Behavior =
+  final def apply(entityContext: EntityContext[Command], state: State)(using environment: Environment): Behavior =
     apply(PersistenceId(entityContext.entityTypeKey.name, entityContext.entityId), state)
       .withTagger(AkkaTaggerAdapter.fromLagom(entityContext, eventTag))
 
-  final def apply(
-      entityContext: EntityContext[Command]
-    )(using
-      environment: Environment
-    ): Behavior =
+  final def apply(entityContext: EntityContext[Command])(using environment: Environment): Behavior =
     apply(entityContext, initialState)
 
-  final def apply(
-      id: Identity,
-      state: State
-    )(using
-      environment: Environment
-    ): Behavior =
+  final def apply(identity: Identity, state: State)(using environment: Environment): Behavior =
     apply(
       PersistenceId(
         typeKey.name,
-        summon[ToEntityId[Identity]].apply(id)),
+        summon[ToEntityId[Identity]].apply(identity)),
       state)
 
-  final def apply(
-      id: Identity
-    )(using
-      environment: Environment
-    ): Behavior =
-    apply(id, initialState)
+  final def apply(identity: Identity)(using environment: Environment): Behavior =
+    apply(identity, initialState)
 
   final def entity(using environment: Environment): Entity[Command, ShardingEnvelope[Command]] =
     Entity(typeKey)(apply(_))
+
+  final def references(clusterSharding: ClusterSharding): References =
+    EventSourcedReferenceFactoryClusterSharding(clusterSharding, typeKey)
+
+  final def topics(persistentEntityRegistry: PersistentEntityRegistry): Topics =
+    EventSourcedTopicProducerRegistry(persistentEntityRegistry, eventTag)
 
 object EventSourcedCompanion:
 
