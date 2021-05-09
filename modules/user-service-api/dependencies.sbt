@@ -7,7 +7,10 @@ scalaVersion := "2.13.5"
 
 libraryDependencies += "com.typesafe.akka" %% "akka-slf4j" % LagomVersion.akka
 
-libraryDependencies += "com.lightbend.lagom" %% "lagom-scaladsl-api" % LagomVersion.current
+libraryDependencies ++=
+  "com.lightbend.lagom" %% "lagom-scaladsl-api" % LagomVersion.current ::
+    "com.lightbend.lagom" %% "lagom-scaladsl-client" % LagomVersion.current ::
+    Nil
 
 libraryDependencies ++=
   "com.devskiller.friendly-id" % "friendly-id" % "1.1.0" ::

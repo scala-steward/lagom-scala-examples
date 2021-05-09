@@ -49,6 +49,12 @@ abstract class UserServiceApplication(
     val binder = LagomServiceBinder[UserService](lagomServerBuilder, service.descriptor)
     LagomServer.forService(binder.to(service))
 
+  /**
+   * Allows subscription to this service's own events.
+   * @see [[https://groups.google.com/d/msg/lagom-framework/K59onuKGYkw/zZiZkTVgAAAJ]]
+   */
+  lazy val userService = UserService.implementWith(serviceClient)
+
 class UserServiceTestApplication(
   context: LagomApplicationContext)
   extends UserServiceApplication(context)

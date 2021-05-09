@@ -6,6 +6,7 @@ import com.lightbend.lagom.scaladsl.api.transport.Method
 import com.lightbend.lagom.scaladsl.api.{ Descriptor, Service, ServiceCall }
 import com.lightbend.lagom.scaladsl.api.ServiceSupport
 import com.lightbend.lagom.scaladsl.api.deser.PathParamSerializer
+import com.lightbend.lagom.scaladsl.client.ServiceClient
 import play.api.libs.json.{ Format, Json }
 import com.devskiller.friendly_id.FriendlyId
 import com.lightbend.lagom.scaladsl.api.deser.PathParamSerializer
@@ -60,5 +61,8 @@ object UserService {
   //    override def getUserImportView(userImportId: UserImportId) = ???
   //    override def getUserView(userId: UserId) = ???
   //  }.descriptor
+
+  def implementWith(serviceClient: ServiceClient): UserService =
+    serviceClient.implement[UserService]
 
 }
