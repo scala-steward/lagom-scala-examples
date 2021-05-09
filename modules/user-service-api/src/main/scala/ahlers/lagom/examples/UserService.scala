@@ -10,6 +10,7 @@ import com.lightbend.lagom.scaladsl.client.ServiceClient
 import play.api.libs.json.{ Format, Json }
 import com.devskiller.friendly_id.FriendlyId
 import com.lightbend.lagom.scaladsl.api.deser.PathParamSerializer
+import com.lightbend.lagom.scaladsl.api.transport.Method.POST
 import play.api.libs.functional.syntax._
 
 import java.util.UUID
@@ -23,6 +24,7 @@ trait UserService extends Service {
   import UserService._
 
   def getUserImportView(userImportId: UserImportId): ServiceCall[NotUsed, NotUsed]
+  def postUserImport(): ServiceCall[NotUsed, String]
 
   def getUserView(userId: UserId): ServiceCall[NotUsed, UserView]
 
@@ -33,7 +35,9 @@ trait UserService extends Service {
     named("user-service")
       .withCalls(
         restCall(GET, "/user-imports/:userImportId", getUserImportView _),
-        restCall(GET, "/users/:userId", getUserView _))
+        restCall(POST, "/user-imports", postUserImport _),
+        restCall(GET, "/users/:userId", getUserView _)
+      )
       .withAutoAcl(true)
   }
 

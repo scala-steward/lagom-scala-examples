@@ -6,6 +6,7 @@ import akka.actor.typed.ActorRefResolver
 import akka.actor.typed.scaladsl.adapter._
 import akka.serialization.SerializationSetup
 import com.lightbend.lagom.scaladsl.playjson.{ JsonSerializer, JsonSerializerRegistry }
+import com.lightbend.lagom.scaladsl.playjson.JsonSerializer.emptySingletonFormat
 import play.api.libs.functional.syntax._
 import play.api.libs.json._
 
@@ -17,7 +18,8 @@ class UserImportSerializerRegistry(actorRefResolver: => ActorRefResolver) extend
 
   import UserImportEntity.Command
   import UserImportEntity.Command._
-  import UserImportEntity.Reply
+  import UserImportEntity.Event
+  import UserImportEntity.Event._
   import UserImportEntity.State
   import UserImportEntity.State._
 
@@ -31,9 +33,16 @@ class UserImportSerializerRegistry(actorRefResolver: => ActorRefResolver) extend
     (__ \ "replyTo").format[ActorRef[State]]
       .inmap(GetUserImport(_), _.replyTo)
 
+  private given Format[StartUserImport] =
+    (__ \ "replyTo").format[ActorRef[State]]
+      .inmap(StartUserImport(_), _.replyTo)
+
   override val serializers =
     JsonSerializer[GetUserImport] ::
-      //JsonSerializer(emptySingletonFormat(ImportNotRunning)) ::
+      JsonSerializer[StartUserImport] ::
+      JsonSerializer(emptySingletonFormat(UserImportStarted)) ::
+      JsonSerializer(emptySingletonFormat(ImportNotRunning)) ::
+      JsonSerializer(emptySingletonFormat(ImportInProgress)) ::
       Nil
 
 object UserImportSerializerRegistry:

@@ -24,17 +24,22 @@ object UserImportEntity extends EventSourcedCompanion[UserImportId]:
   sealed trait Command
   object Command:
     case class GetUserImport(replyTo: ActorRef[State]) extends Command
+    case class StartUserImport(replyTo: ActorRef[State]) extends Command
 
   sealed trait Reply
 
   sealed trait Event extends AggregateEvent[Event]:
     override final val aggregateTag = eventTag
+  object Event:
+    case object UserImportStarted extends Event
 
   sealed trait State
   object State:
     case object ImportNotRunning extends State
+    case object ImportInProgress extends State
 
   import Command._
+  import Event._
   import State._
 
   override val typeKey = EntityTypeKey("user-import-entity_v1")
@@ -44,13 +49,30 @@ object UserImportEntity extends EventSourcedCompanion[UserImportId]:
 
   override val applyCommand =
     environment =>
-      case state @ ImportNotRunning =>
+
+      case ImportNotRunning =>
         case command: GetUserImport =>
-          Effect.reply(command.replyTo)(state)
+          Effect.reply(command.replyTo)(ImportNotRunning)
+        case command: StartUserImport =>
+          val event = UserImportStarted
+          Effect
+            .persist(event)
+            .thenReply(command.replyTo)(identity)
+
+      case ImportInProgress =>
+        case command: GetUserImport =>
+          Effect.reply(command.replyTo)(ImportInProgress)
+        case command: StartUserImport =>
+          ???
 
   override val applyEvent =
+
     case ImportNotRunning =>
-      event =>
+      case UserImportStarted =>
+        ImportInProgress
+
+    case ImportInProgress =>
+      case UserImportStarted =>
         ???
 
 type UserImportRegistry = UserImportEntity.Registry
