@@ -23,6 +23,7 @@ lazy val `user-service-api` =
 lazy val `user-service` =
   project.in(file(".") / "modules" / "user-service")
     .dependsOn(
+      `lagom-scaladsl-persistence-support`,
       `user-service-api`)
 
 ThisBuild / Test / testOptions += Tests.Argument("-oD")
