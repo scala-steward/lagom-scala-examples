@@ -19,5 +19,5 @@ class UserServiceApplicationLoader extends LagomApplicationLoader:
   override def loadDevMode(context: LagomApplicationContext) =
     new UserServiceTestApplication(context)
 
-  override val describeService =
-    Some(UserService.descriptor)
+  //override val describeService =
+  //  Some(UserService.descriptor)

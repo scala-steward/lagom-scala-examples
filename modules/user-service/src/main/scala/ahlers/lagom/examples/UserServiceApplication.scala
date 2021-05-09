@@ -46,7 +46,7 @@ abstract class UserServiceApplication(
         userImportRegistry,
         actorSystem)
 
-    val binder = LagomServiceBinder[UserService](lagomServerBuilder, UserService.descriptor)
+    val binder = LagomServiceBinder[UserService](lagomServerBuilder, service.descriptor)
     LagomServer.forService(binder.to(service))
 
 class UserServiceTestApplication(

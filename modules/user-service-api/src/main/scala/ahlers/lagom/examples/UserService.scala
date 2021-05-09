@@ -54,11 +54,11 @@ object UserService {
   implicit val pathParamSerializerUserId: PathParamSerializer[UserId] =
     PathParamSerializer.required[UserId]("UserId")(fromString => UserId(FriendlyId.toUuid(fromString)))(fromId => FriendlyId.toFriendlyId(fromId.toUuid))
 
-  /** Scala 2 macros cannot be used in Scala 3 modules, so this effectively does the work of [[com.lightbend.lagom.scaladsl.server.LagomApplicationLoader#readDescriptor]], albeit manually. */
-  val descriptor: Descriptor =
-    new UserService {
-      override def getUserImportView(userImportId: UserImportId) = ???
-      override def getUserView(userId: UserId) = ???
-    }.descriptor
+  ///** Scala 2 macros cannot be used in Scala 3 modules, so this effectively does the work of [[com.lightbend.lagom.scaladsl.server.LagomApplicationLoader#readDescriptor]], albeit manually. */
+  //val descriptor: Descriptor =
+  //  new UserService {
+  //    override def getUserImportView(userImportId: UserImportId) = ???
+  //    override def getUserView(userId: UserId) = ???
+  //  }.descriptor
 
 }
