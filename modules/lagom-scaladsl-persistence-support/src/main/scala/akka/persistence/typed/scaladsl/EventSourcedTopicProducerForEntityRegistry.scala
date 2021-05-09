@@ -12,7 +12,7 @@ import com.lightbend.lagom.scaladsl.persistence.{ AggregateEvent, AggregateEvent
  * @since May 09, 2021
  * @author <a href="mailto:michael@ahlers.consulting">Michael Ahlers</a>
  */
-class EventSourcedTopicProducerRegistry[Event <: AggregateEvent[Event]](
+private[scaladsl] class EventSourcedTopicProducerForEntityRegistry[Event <: AggregateEvent[Event]](
   persistentEntityRegistry: PersistentEntityRegistry,
   eventTag: AggregateEventShards[Event])
   extends EventSourcedTopicProducer[Event]:

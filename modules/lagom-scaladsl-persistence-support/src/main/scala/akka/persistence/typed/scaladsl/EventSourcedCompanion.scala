@@ -64,10 +64,10 @@ trait EventSourcedCompanion[Identity: ToEntityId]:
     Entity(typeKey)(apply(_))
 
   final def references(clusterSharding: ClusterSharding): References =
-    EventSourcedReferenceFactoryClusterSharding(clusterSharding, typeKey)
+    EventSourcedReferenceFactoryForClusterSharding(clusterSharding, typeKey)
 
   final def topics(persistentEntityRegistry: PersistentEntityRegistry): Topics =
-    EventSourcedTopicProducerRegistry(persistentEntityRegistry, eventTag)
+    EventSourcedTopicProducerForEntityRegistry(persistentEntityRegistry, eventTag)
 
 object EventSourcedCompanion:
 

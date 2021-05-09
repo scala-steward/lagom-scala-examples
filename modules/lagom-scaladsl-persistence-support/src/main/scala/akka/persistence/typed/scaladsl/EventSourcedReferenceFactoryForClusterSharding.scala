@@ -7,7 +7,7 @@ import akka.persistence.typed.scaladsl.EventSourcedCompanion.ToEntityId
  * @since May 09, 2021
  * @author <a href="mailto:michael@ahlers.consulting">Michael Ahlers</a>
  */
-private[scaladsl] class EventSourcedReferenceFactoryClusterSharding[Identity: ToEntityId, Command](
+private[scaladsl] class EventSourcedReferenceFactoryForClusterSharding[Identity: ToEntityId, Command](
   clusterSharding: ClusterSharding,
   typeKey: EntityTypeKey[Command])
   extends EventSourcedReferenceFactory[Identity, Command]:
