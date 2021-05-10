@@ -41,7 +41,7 @@ libraryDependencies ++=
     Nil
 
 libraryDependencies ++=
-  ("com.github.tminglei" %% "slick-pg" % "0.19.5" ::
+  ("com.github.tminglei" %% "slick-pg" % "0.19.6" ::
     Nil)
     .map(_
       .cross(CrossVersion.for3Use2_13))
