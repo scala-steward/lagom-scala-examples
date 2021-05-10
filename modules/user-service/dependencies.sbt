@@ -36,7 +36,7 @@ libraryDependencies ++=
 
 libraryDependencies ++=
   "com.h2database" % "h2" % "1.4.200" ::
-    "org.postgresql" % "postgresql" % "42.2.19" ::
+    "org.postgresql" % "postgresql" % "42.2.20" ::
     "org.flywaydb" % "flyway-core" % "7.5.4" ::
     Nil
 
