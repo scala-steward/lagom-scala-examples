@@ -37,7 +37,7 @@ libraryDependencies ++=
 libraryDependencies ++=
   "com.h2database" % "h2" % "1.4.200" ::
     "org.postgresql" % "postgresql" % "42.2.20" ::
-    "org.flywaydb" % "flyway-core" % "7.5.4" ::
+    "org.flywaydb" % "flyway-core" % "7.8.2" ::
     Nil
 
 libraryDependencies ++=
@@ -55,7 +55,7 @@ libraryDependencies ++=
       .cross(CrossVersion.for3Use2_13))
 
 libraryDependencies +=
-  "org.jooq" % "joor" % "0.9.13" % Test
+  "org.jooq" % "joor" % "0.9.14" % Test
 
 /** Fixes an incompatibility. */
 dependencyOverrides ++=
