@@ -55,7 +55,7 @@ libraryDependencies ++=
       .cross(CrossVersion.for3Use2_13))
 
 libraryDependencies +=
-  "org.jooq" % "joor" % "0.9.14" % Test
+  "org.jooq" % "joor" % "0.9.15" % Test
 
 /** Fixes an incompatibility. */
 dependencyOverrides ++=
