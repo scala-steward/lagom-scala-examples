@@ -3,7 +3,7 @@ import com.lightbend.lagom.core.LagomVersion
 resolvers += "scala-integration".at("https://scala-ci.typesafe.com/artifactory/scala-integration/")
 
 /** This module remains compiled against Scala 2.13 since Lagom makes extensive use of macros for declaring service descriptors. */
-scalaVersion := "2.13.6"
+scalaVersion := "2.13.12"
 
 libraryDependencies += "com.typesafe.akka" %% "akka-slf4j" % LagomVersion.akka
 
