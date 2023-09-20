@@ -35,7 +35,7 @@ libraryDependencies ++=
       .cross(CrossVersion.for3Use2_13))
 
 libraryDependencies ++=
-  "com.h2database" % "h2" % "1.4.200" ::
+  "com.h2database" % "h2" % "2.2.224" ::
     "org.postgresql" % "postgresql" % "42.2.20" ::
     "org.flywaydb" % "flyway-core" % "7.9.1" ::
     Nil
